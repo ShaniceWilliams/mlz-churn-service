@@ -100,7 +100,12 @@ def train_model(df:pd.DataFrame) -> sklearn.pipeline.Pipeline:
 #------- Model Saving -------#
 #============================#
 
-def save_model(pipeline):
+def save_model(pipeline: sklearn.pipeline.Pipeline):
+    """
+    Function to save model pipeline to bin file.
+    Params:
+        pipeline (sklearn.pipeline.Pipeline): Pipeline object containing DictVectoriser(), and LogisticRegression()
+    """
     logging.info(f"Saving Model...")
     timestamp = datetime.now().strftime('%d_%b_%Y_%H_%M')
 
