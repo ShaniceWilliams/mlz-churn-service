@@ -19,7 +19,7 @@ logging.info(f"Loading model {input_file_path}")
 #============================#
 
 with open(input_file_path, 'rb') as f_in:
-    dv, model = pickle.load(f_in)
+    pipeline = pickle.load(f_in)
 
 
 # dv, model
@@ -53,9 +53,11 @@ customer = {
 
 logging.info(f"Customer input: {customer}")
 
-x = dv.transform([customer])
+def predict_single(customer):
+    result = pipeline.predict_proba(customer)[0, 1]
+    return float(result)
 
-y_pred = model.predict_proba(x)[0, 1]
+y_pred = predict_single(customer)
 
 print(f'Churn Probability: {y_pred:.3f}')
 
