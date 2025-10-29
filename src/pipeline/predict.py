@@ -9,7 +9,7 @@ from src.logger import logging
 #-------- Parameters --------#
 #============================#
 
-input_file_path = './models/model_C=1.0_27_Oct_2025_10_18.bin'
+input_file_path = './src/models/model_C=1.0_27_Oct_2025_10_18.bin'
 
 logging.info(f"Loading model {input_file_path}")
 

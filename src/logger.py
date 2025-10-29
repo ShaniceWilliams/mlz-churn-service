@@ -8,10 +8,14 @@ from datetime import datetime
 
 TIMESTAMP = datetime.now().strftime('%d_%b_%Y_%H_%M')
 LOG_FILE = f'{TIMESTAMP}.log'
-log_file_dir_path = "./.logs"
+# log_file_dir_path = "./src/.logs"
 
-LOG_FILE_PATH = os.path.join(os.getcwd(),log_file_dir_path, LOG_FILE)
+# LOG_FILE_PATH = os.path.join(os.getcwd(),log_file_dir_path, LOG_FILE)
 
+logs_path = os.path.join(os.getcwd(), "logs", LOG_FILE)
+os.makedirs(logs_path, exist_ok=True)
+
+LOG_FILE_PATH = os.path.join(logs_path, LOG_FILE)
 
 logging.basicConfig(
     filename=LOG_FILE_PATH,
