@@ -9,7 +9,7 @@ from src.logger import logging
 #-------- Parameters --------#
 #============================#
 
-input_file_path = './models/model_C=1.0_25_Oct_2025_22_32.bin'
+input_file_path = './models/model_C=1.0_27_Oct_2025_10_18.bin'
 
 logging.info(f"Loading model {input_file_path}")
 
@@ -18,8 +18,8 @@ logging.info(f"Loading model {input_file_path}")
 #------ Load the model ------#
 #============================#
 
-with open(input_file_path, 'rb') as f:
-    dv, model = pickle.load(f)
+with open(input_file_path, 'rb') as f_in:
+    dv, model = pickle.load(f_in)
 
 
 # dv, model
@@ -56,5 +56,12 @@ logging.info(f"Customer input: {customer}")
 x = dv.transform([customer])
 
 y_pred = model.predict_proba(x)[0, 1]
+
+print(f'Churn Probability: {y_pred:.3f}')
+
+if y_pred >= 0.5:
+    print('Customer predicted to churn. Send email with promo')
+else:
+    print('Customer is not predicted to churn, no action required.')
 
 logging.info(f"Churn prediction probability: {y_pred}")
