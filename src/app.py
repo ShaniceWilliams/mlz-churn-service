@@ -8,9 +8,9 @@ from src.schemas.models import Customer, PredictResponse
 app = FastAPI(title="ChurnPredict")
 
 
-@app.post("/predict")
+@app.post("/predict", response_model=PredictResponse)
 def predict(customer: Customer) -> PredictResponse:
-    churn_prob = predict_single(customer)
+    churn_prob = predict_single(customer.model_dump())
     return PredictResponse(
         churn_probability=churn_prob,
         churn=bool(churn_prob >= 0.5)
